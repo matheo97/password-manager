@@ -1,9 +1,19 @@
 <script>
   import items from './Items';
+  let sidebarClosed = true
+
+  const toggleSidebar = () => sidebarClosed = !sidebarClosed;
+
 </script>
 
 <div class="Sidebar">
-  <div class="Sidebar-elements">
+  <div 
+    class={`Sidebar-elements ${sidebarClosed ? 'close': ''}`} 
+    on:mouseover={toggleSidebar} 
+    on:mouseout={toggleSidebar}
+    on:focus={toggleSidebar}
+    on:blur={toggleSidebar}
+  >
     <div class="Sidebar-logo">
       <img src='assets/logo.svg' alt="passify-logo">
       <h1>Pass<em>’ify</em></h1>
