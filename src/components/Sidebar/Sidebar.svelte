@@ -4,19 +4,24 @@
   let sidebarClosed = true;
   let selectedItem = null;
 
-  const toggleSidebar = () => sidebarClosed = !sidebarClosed;
+  const mouseOverSideBar = () => sidebarClosed = false;
 
-  const selectItem = (itemKey) => selectedItem = itemKey;
+  const mouseOutSideBar = () => sidebarClosed = true;
+
+  const selectItem = (itemKey) => { 
+    selectedItem = itemKey;
+    sidebarClosed = true;
+  }
 
 </script>
 
 <div class="Sidebar">
   <div 
     class={`Sidebar-elements ${sidebarClosed ? 'close': ''}`} 
-    on:mouseover={toggleSidebar} 
-    on:mouseout={toggleSidebar}
-    on:focus={toggleSidebar}
-    on:blur={toggleSidebar}
+    on:mouseover={mouseOverSideBar} 
+    on:mouseout={mouseOutSideBar}
+    on:focus={mouseOverSideBar}
+    on:blur={mouseOutSideBar}
   >
     <div class="Sidebar-logo">
       <img src='assets/logo.svg' alt="passify-logo">
