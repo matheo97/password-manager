@@ -43,7 +43,7 @@
     width: 240px;
     height: 100vh;
     background-color: var(--primary);
-    transition: all 0.5s ease-out;
+    transition: width 0.6s ease-in-out;
   }
 
   .Sidebar-elements.close {
@@ -63,11 +63,6 @@
     margin-top: 30px;
     margin-left: 20px;
     width: 90%;
-    transition: all 0.5s ease;
-  }
-
-  .Sidebar-elements.close .Sidebar-logo h1 {
-    visibility: hidden;
   }
 
   .Sidebar-logo img {
@@ -78,6 +73,12 @@
   .Sidebar-logo h1 {
     color: var(--secondary);
     margin-left: 15px;
+    opacity: 1;
+  }
+
+  .Sidebar-elements.close .Sidebar-logo h1 {
+    opacity: 0;
+    transition: opacity .2s linear;
   }
 
   .Sidebar-logo h1 em {
@@ -98,7 +99,6 @@
     width: 80%;
     margin-top: 30px;
     cursor: pointer;
-    transition: all 0.5s ease;
     padding: 10px;
     border-radius: 10px;
   }
@@ -118,9 +118,10 @@
     color: var(--tertiary);
     text-transform: uppercase;
     margin-left: 10px;
+    opacity: 1;
   }
-
   .Sidebar-elements.close .Sidebar-item-value span {
-    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s linear;
   }
 </style>
