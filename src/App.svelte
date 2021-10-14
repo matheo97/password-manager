@@ -14,12 +14,17 @@
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600&display=swap');
 
 	:root {
+    /* colors */
     --primary: #5AC97A;
     --secondary: #000;
     --tertiary: #FAFAFA;
     --grey: #C7C7C7;
     --primary-hover: rgb(52, 117, 70);
     --tertiary-hover: rgb(177, 177, 177);
+
+    /* breakpoints */
+    --tablet: 1024px;
+    --phone: 640px;
   }
 
   :global(body) {

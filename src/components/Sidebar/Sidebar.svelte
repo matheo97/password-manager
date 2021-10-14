@@ -8,6 +8,8 @@
 
   const mouseOutSideBar = () => sidebarClosed = true;
 
+  const toggleSidebar = () => sidebarClosed = !sidebarClosed;
+
   const selectItem = (itemKey) => { 
     selectedItem = itemKey;
     sidebarClosed = true;
@@ -42,6 +44,9 @@
     </div>
   </div>
   <div class="Sidebar-content">
+    <div>
+      <button on:click={toggleSidebar}>Open</button>
+    </div>
     <slot></slot>
   </div>
 </div>
@@ -49,6 +54,7 @@
 <style>
 	.Sidebar {
 		display: flex;
+    position: relative;
 	}
 
   .Sidebar-elements {
@@ -143,5 +149,24 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity .2s linear;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .Sidebar-elements {
+      position: absolute;
+      left: 0;
+      transition: left .3s ease-out;
+    }
+
+    .Sidebar-elements.close {
+      position: absolute;
+      left: -240px;
+      transition: left .2s ease-in;
+      width: 240px;
+    }
+
+    .Sidebar-content {
+      width: 100vw;
+    }
   }
 </style>
