@@ -1,8 +1,12 @@
 <script>
   import items from './Items';
-  let sidebarClosed = true
+
+  let sidebarClosed = true;
+  let selectedItem = null;
 
   const toggleSidebar = () => sidebarClosed = !sidebarClosed;
+
+  const selectItem = (itemKey) => selectedItem = itemKey;
 
 </script>
 
@@ -21,7 +25,10 @@
     <div class="Sidebar-item-container">
       <ul class="Sidebar-item-list">
         {#each items as item}
-          <li class="Sidebar-item-value">
+          <li 
+            class={`Sidebar-item-value ${selectedItem === item.key ? 'selected' : ''}`}
+            on:click={() => selectItem(item.key)}
+          >
             <i class={`fas ${item.icon}`} />
             <span class="Sidebar-item-name">{item.content}</span>
           </li>
@@ -47,7 +54,7 @@
   }
 
   .Sidebar-elements.close {
-    width: 117px;
+    width: 80px;
   }
 
   .Sidebar-content {
@@ -61,18 +68,19 @@
     align-items: center;
     justify-content: flex-start;
     margin-top: 30px;
-    margin-left: 20px;
+    margin-left: 14px;
     width: 90%;
   }
 
   .Sidebar-logo img {
-    width: 70px;
-    height: 80px;
+    width: 50px;
+    height: 60px;
   }
 
   .Sidebar-logo h1 {
     color: var(--secondary);
     margin-left: 15px;
+    font-size: 28px;
     opacity: 1;
     visibility: visible;
   }
@@ -89,8 +97,7 @@
   }
   
   .Sidebar-item-list {
-    padding: 30px;
-    width: 85%;
+    padding-left: 20px;
   }
 
   .Sidebar-item-value {
@@ -105,17 +112,21 @@
     border-radius: 10px;
   }
 
+  .Sidebar-item-value.selected {
+    opacity: .6;
+  }
+
   .Sidebar-item-value:hover {
     opacity: .6;
   }
 
   .Sidebar-item-value i {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--tertiary);
   }
 
   .Sidebar-item-value span {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--tertiary);
     text-transform: uppercase;
