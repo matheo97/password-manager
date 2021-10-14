@@ -43,7 +43,7 @@
     width: 240px;
     height: 100vh;
     background-color: var(--primary);
-    transition: width 0.6s ease-in-out;
+    transition: width 0.4s ease-in-out;
   }
 
   .Sidebar-elements.close {
@@ -74,10 +74,12 @@
     color: var(--secondary);
     margin-left: 15px;
     opacity: 1;
+    visibility: visible;
   }
 
   .Sidebar-elements.close .Sidebar-logo h1 {
     opacity: 0;
+    visibility: hidden;
     transition: opacity .2s linear;
   }
 
@@ -119,9 +121,11 @@
     text-transform: uppercase;
     margin-left: 10px;
     opacity: 1;
+    visibility: visible;
   }
   .Sidebar-elements.close .Sidebar-item-value span {
     opacity: 0;
+    visibility: hidden;
     transition: opacity .2s linear;
   }
 </style>
