@@ -1,8 +1,13 @@
 <script>
   import items from './Items';
+  import ListEntities from '../../pages/ListEntities.svelte';
 
   let isSidebarClosed = true;
-  let selectedItem = null;
+  let selectedItem = {
+    icon: 'fa-unlock-alt',
+    content: 'contraseñas',
+    key: 'password'
+  };
 
   const closeSideBar = () => (isSidebarClosed = true);
 
@@ -49,10 +54,7 @@
       class={`Sidebar-content-fade-out ${isSidebarClosed ? 'close' : ''}`}
       on:click={closeSideBar}
     />
-    <div>
-      <button on:click={toggleSidebar}>Open</button>
-    </div>
-    <slot />
+    <ListEntities toggleMenu={toggleSidebar} entity={selectedItem} />
   </div>
 </div>
 
@@ -75,9 +77,9 @@
   }
 
   .Sidebar-content {
-    width: calc(100vw - 240px);
+    width: calc(100vw - 80px);
     height: 100vh;
-    background-color: var(--tertiary);
+    background-color: var(--background);
   }
   .Sidebar-content-fade-out {
     position: absolute;
