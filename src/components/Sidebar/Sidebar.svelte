@@ -4,36 +4,37 @@
   let isSidebarClosed = true;
   let selectedItem = null;
 
-  const closeSideBar = () => isSidebarClosed = true;
+  const closeSideBar = () => (isSidebarClosed = true);
 
-  const openSideBar = () => isSidebarClosed = false;
+  const openSideBar = () => (isSidebarClosed = false);
 
-  const toggleSidebar = () => isSidebarClosed = !isSidebarClosed;
+  const toggleSidebar = () => (isSidebarClosed = !isSidebarClosed);
 
-  const selectItem = (itemKey) => { 
+  const selectItem = itemKey => {
     selectedItem = itemKey;
     isSidebarClosed = true;
-  }
-
+  };
 </script>
 
 <div class="Sidebar">
-  <div 
-    class={`Sidebar-elements ${isSidebarClosed ? 'close': ''}`} 
-    on:mouseover={openSideBar} 
+  <div
+    class={`Sidebar-elements ${isSidebarClosed ? 'close' : ''}`}
+    on:mouseover={openSideBar}
     on:mouseout={closeSideBar}
     on:focus={openSideBar}
     on:blur={closeSideBar}
   >
     <div class="Sidebar-logo">
-      <img src='assets/logo.svg' alt="passify-logo">
+      <img src="assets/logo.svg" alt="passify-logo" />
       <h1>Pass<em>’ify</em></h1>
     </div>
     <div class="Sidebar-item-container">
       <ul class="Sidebar-item-list">
         {#each items as item}
-          <li 
-            class={`Sidebar-item-value ${selectedItem === item.key ? 'selected' : ''}`}
+          <li
+            class={`Sidebar-item-value ${
+              selectedItem === item.key ? 'selected' : ''
+            }`}
             on:click={() => selectItem(item.key)}
           >
             <i class={`fas ${item.icon}`} />
@@ -44,19 +45,22 @@
     </div>
   </div>
   <div class="Sidebar-content">
-    <div class={`Sidebar-content-fade-out ${isSidebarClosed ? 'close' : ''}`} on:click={closeSideBar}></div>
+    <div
+      class={`Sidebar-content-fade-out ${isSidebarClosed ? 'close' : ''}`}
+      on:click={closeSideBar}
+    />
     <div>
       <button on:click={toggleSidebar}>Open</button>
     </div>
-    <slot></slot>
+    <slot />
   </div>
 </div>
 
 <style>
-	.Sidebar {
-		display: flex;
+  .Sidebar {
+    display: flex;
     position: relative;
-	}
+  }
 
   .Sidebar-elements {
     width: 240px;
@@ -80,7 +84,7 @@
     top: 0;
     left: 0;
     z-index: 2;
-    opacity: .3;
+    opacity: 0.3;
     height: 100%;
     width: 100%;
     background-color: var(--secondary);
@@ -115,14 +119,14 @@
   .Sidebar-elements.close .Sidebar-logo h1 {
     opacity: 0;
     visibility: hidden;
-    transition: opacity .2s linear;
+    transition: opacity 0.2s linear;
   }
 
   .Sidebar-logo h1 em {
     color: var(--tertiary);
     font-style: normal;
   }
-  
+
   .Sidebar-item-list {
     padding-left: 20px;
   }
@@ -140,11 +144,11 @@
   }
 
   .Sidebar-item-value.selected {
-    opacity: .6;
+    opacity: 0.6;
   }
 
   .Sidebar-item-value:hover {
-    opacity: .6;
+    opacity: 0.6;
   }
 
   .Sidebar-item-value i {
@@ -164,20 +168,20 @@
   .Sidebar-elements.close .Sidebar-item-value span {
     opacity: 0;
     visibility: hidden;
-    transition: opacity .2s linear;
+    transition: opacity 0.2s linear;
   }
 
   @media only screen and (max-width: 1024px) {
     .Sidebar-elements {
       position: absolute;
       left: 0;
-      transition: left .3s ease-out;
+      transition: left 0.3s ease-out;
     }
 
     .Sidebar-elements.close {
       position: absolute;
       left: -240px;
-      transition: left .2s ease-in;
+      transition: left 0.2s ease-in;
       width: 240px;
     }
 
