@@ -1,29 +1,29 @@
 <script>
   import items from './Items';
 
-  let sidebarClosed = true;
+  let isSidebarClosed = true;
   let selectedItem = null;
 
-  const mouseOverSideBar = () => sidebarClosed = false;
+  const closeSideBar = () => isSidebarClosed = true;
 
-  const mouseOutSideBar = () => sidebarClosed = true;
+  const openSideBar = () => isSidebarClosed = false;
 
-  const toggleSidebar = () => sidebarClosed = !sidebarClosed;
+  const toggleSidebar = () => isSidebarClosed = !isSidebarClosed;
 
   const selectItem = (itemKey) => { 
     selectedItem = itemKey;
-    sidebarClosed = true;
+    isSidebarClosed = true;
   }
 
 </script>
 
 <div class="Sidebar">
   <div 
-    class={`Sidebar-elements ${sidebarClosed ? 'close': ''}`} 
-    on:mouseover={mouseOverSideBar} 
-    on:mouseout={mouseOutSideBar}
-    on:focus={mouseOverSideBar}
-    on:blur={mouseOutSideBar}
+    class={`Sidebar-elements ${isSidebarClosed ? 'close': ''}`} 
+    on:mouseover={openSideBar} 
+    on:mouseout={closeSideBar}
+    on:focus={openSideBar}
+    on:blur={closeSideBar}
   >
     <div class="Sidebar-logo">
       <img src='assets/logo.svg' alt="passify-logo">
@@ -44,6 +44,7 @@
     </div>
   </div>
   <div class="Sidebar-content">
+    <div class={`Sidebar-content-fade-out ${isSidebarClosed ? 'close' : ''}`} on:click={closeSideBar}></div>
     <div>
       <button on:click={toggleSidebar}>Open</button>
     </div>
@@ -62,6 +63,7 @@
     height: 100vh;
     background-color: var(--primary);
     transition: width 0.4s ease-in-out;
+    z-index: 5;
   }
 
   .Sidebar-elements.close {
@@ -72,6 +74,20 @@
     width: calc(100vw - 240px);
     height: 100vh;
     background-color: var(--tertiary);
+  }
+  .Sidebar-content-fade-out {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: .3;
+    height: 100%;
+    width: 100%;
+    background-color: var(--secondary);
+  }
+
+  .Sidebar-content-fade-out.close {
+    display: none;
   }
 
   .Sidebar-elements .Sidebar-logo {
