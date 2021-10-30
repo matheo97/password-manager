@@ -18,6 +18,7 @@
     --background: #e5e5e5;
     --primary-hover: rgb(52, 117, 70);
     --tertiary-hover: rgb(177, 177, 177);
+    --sub-title: #939393;
 
     /* breakpoints */
     --tablet: 1024px;
